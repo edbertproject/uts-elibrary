@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/update_book"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".UpdateActivity">
+
+    <EditText
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/titlePlaceholder"
+        android:layout_below="@+id/titlePlaceholder"
+        android:inputType="text">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/titlePlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/authorPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/titleTextView"
+        android:layout_below="@+id/titleTextView"
+        android:layout_marginTop="10dp"
+        android:text="Author" />
+
+    <EditText
+        android:id="@+id/authorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/authorPlaceholder"
+        android:layout_below="@+id/authorPlaceholder"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/publisherPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/authorTextView"
+        android:layout_below="@+id/authorTextView"
+        android:layout_marginTop="10dp"
+        android:text="Publisher" />
+
+    <EditText
+        android:id="@+id/publisherTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/publisherPlaceholder"
+        android:layout_below="@+id/publisherPlaceholder"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/yearPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/publisherTextView"
+        android:layout_below="@+id/publisherTextView"
+        android:layout_marginTop="10dp"
+        android:text="Year" />
+
+    <EditText
+        android:id="@+id/yearTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/yearPlaceholder"
+        android:layout_below="@+id/yearPlaceholder"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/descriptionPlaceHolder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/yearTextView"
+        android:layout_below="@+id/yearTextView"
+        android:layout_marginTop="10dp"
+        android:text="Description" />
+
+    <EditText
+        android:id="@+id/descriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/descriptionPlaceHolder"
+        android:layout_below="@+id/descriptionPlaceHolder"
+        android:inputType="text"
+        android:lines="3"/>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/descriptionTextView"
+        android:layout_alignParentBottom="true"
+        android:text="Save"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:textColor="@color/black"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/descriptionTextView"
+        android:layout_alignEnd="@+id/descriptionTextView" />
+
+</RelativeLayout>

@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Declare Variable
     EditText usernameInput;
     EditText passwordInput;
 
@@ -28,36 +30,46 @@ public class MainActivity extends AppCompatActivity {
         sqliteHelper = new LoginHelper(this);
         init();
 
+        //Assign Action when Login button Clicked
         loginButton.setOnClickListener(view -> {
 
+            //Validate Password and Username
             if (validateUsername()&&validatePassword()) {
+                //Get Data from EditText in Main Activity
                 String username = usernameInput.getText().toString();
                 String password = passwordInput.getText().toString();
 
+                //Authenticate User
                 UserModel currentUser = sqliteHelper.Authenticate(new UserModel(null, username, null, password));
 
+                //Checking Authentication is Successful or Not
                 if (currentUser != null) {
+                    //Message if Success
                     Toast.makeText(getApplicationContext(), "Successfully logged in!", Toast.LENGTH_LONG).show();
 
+                    //Move to Home Activity with bring Username
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("username",username);
                     startActivity(intent);
                     finish();
                 } else {
+                    //Message if Failed to login
                     Toast.makeText(getApplicationContext(), "Username or password is incorrect, please try again!", Toast.LENGTH_LONG).show();
                 }
             }
-
         });
     }
 
+    //Initiate variable with id on Main XML and set onClick to Register Button
     private void init() {
+        //Move to Register Activity
         Button registerButton = findViewById(R.id.register_button);
         registerButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
 
+        //Initiate variable with id on Home XML
         usernameInput = findViewById(R.id.username_input);
         passwordInput = findViewById(R.id.password_input);
         usernameLayout = findViewById(R.id.username_layout);
@@ -65,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
     }
 
+    //Validate Username
     private boolean validateUsername() {
         boolean isValid;
 
@@ -80,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
             isValid = false;
             usernameLayout.setError("Username is too shor!");
         }
-
         return isValid;
     }
 
+    //Validate Password
     private boolean validatePassword() {
         boolean isValid;
 
@@ -99,7 +112,6 @@ public class MainActivity extends AppCompatActivity {
             isValid = false;
             passwordLayout.setError("Username is too shor!");
         }
-
         return isValid;
     }
 }

@@ -1,9 +1,11 @@
 package com.uts.elibrary;
 
 public class BookModel {
+    //Declare Variable
     public int id, year;
     public String title, description, author, publisher;
 
+    //Constructor Without ID
     public BookModel(String title, String description, String author, String publisher, int year){
         this.title = title;
         this.description = description;
@@ -12,6 +14,7 @@ public class BookModel {
         this.year = year;
     }
 
+    //Constructor With ID
     public BookModel(int id, String title, String description, String author, String publisher, int year){
         this.id = id;
         this.title = title;
@@ -21,6 +24,7 @@ public class BookModel {
         this.year = year;
     }
 
+    //Functions
     public int getId() {
         return id;
     }

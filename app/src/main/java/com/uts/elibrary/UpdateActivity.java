@@ -8,15 +8,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class UpdateActivity extends AppCompatActivity {
+    //Declare Variable
     BookCRUDHelper crudHelper;
     Button submitButton, backButton;
     TextView titleText, descriptionText, authorText, publisherText, yearText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        //Assign the variable values
         crudHelper = new BookCRUDHelper(this);
+
         titleText = findViewById(R.id.titleTextView);
         descriptionText = findViewById(R.id.descriptionTextView);
         authorText = findViewById(R.id.authorTextView);
@@ -25,6 +29,7 @@ public class UpdateActivity extends AppCompatActivity {
         submitButton = findViewById(R.id.saveButton);
         backButton = findViewById(R.id.backButton);
 
+        //Set Text into Object in Update Activity from BookModel
         BookModel book = crudHelper.find(getIntent().getIntExtra("bookId",0));
         titleText.setText(book.getTitle());
         descriptionText.setText(book.getDescription());
@@ -32,6 +37,7 @@ public class UpdateActivity extends AppCompatActivity {
         publisherText.setText(book.getPublisher());
         yearText.setText(String.valueOf(book.getYear()));
 
+        //Set Action for onClick Save Button to Updatating values in BookModel
         submitButton.setOnClickListener(view -> {
             crudHelper.update(new BookModel(
                     book.getId(),
@@ -46,6 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
             finish();
         });
 
+        //Set button back onClick to destroy this Activity
         backButton.setOnClickListener(view -> finish());
     }
 }

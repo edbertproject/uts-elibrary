@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
+
+    //Declare Variable
     List<BookModel> books;
     BookAdapter bookAdapter;
     ListView bookListView;
@@ -29,12 +31,12 @@ public class HomeActivity extends AppCompatActivity {
         crudHelper = new BookCRUDHelper(this);
         current = this;
 
+        //Set action when clicked Floating Action Button on Bottom Right move to Store Activity
         FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, StoreActivity.class);
             startActivity(intent);
         });
-
         RefreshList();
     }
 
@@ -46,8 +48,11 @@ public class HomeActivity extends AppCompatActivity {
         bookAdapter = new BookAdapter(HomeActivity.this, books);
 
         bookListView = findViewById(R.id.bookList);
+        //Set Adapter
         bookListView.setAdapter(bookAdapter);
         bookListView.setSelected(true);
+
+        //Set action for onClick one of the item in ListView
         bookListView.setOnItemClickListener((adapterView, view, position, id) -> {
             final BookModel book = new BookModel(
                     books.get(position).getId(),
@@ -57,17 +62,21 @@ public class HomeActivity extends AppCompatActivity {
                     books.get(position).getPublisher(),
                     books.get(position).getYear()
             );
+
+            //Make Floating Alert Dialog with 2 Option "Edit" or "Delete"
             final CharSequence[] dialogitem = {"Edit Book", "Delete Book"};
             AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
             builder.setTitle("Option");
             builder.setItems(dialogitem, (dialog, item) -> {
                 switch (item) {
                     case 0:
+                        //Set onClick dialogItem 0 : "Edit" to move to Update Activity
                         Intent in = new Intent(getApplicationContext(), UpdateActivity.class);
                         in.putExtra("bookId", book.getId());
                         startActivity(in);
                         break;
                     case 1:
+                        //Set onClick dialogItem 1 : "Delete" to move to Update Activity
                         crudHelper.delete(book.getId());
                         Toast.makeText(getApplicationContext(), "Successfully delete book", Toast.LENGTH_LONG).show();
                         RefreshList();

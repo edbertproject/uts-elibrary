@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    //Declare Variable
     EditText emailInput;
     EditText usernameInput;
     EditText passwordInput;
@@ -31,28 +33,35 @@ public class RegisterActivity extends AppCompatActivity {
         sqliteHelper = new LoginHelper(this);
         this.init();
 
+        //Assign Action when Register button Clicked
         registerButton.setOnClickListener(view -> {
 
+            //Validate Email, Username, and Password
             if (validateEmail()&&validateUsername()&&validatePassword()) {
+                //Get Data from EditText in Register Activity
                 String email = emailInput.getText().toString();
                 String username = usernameInput.getText().toString();
                 String password = passwordInput.getText().toString();
 
+                //Check in DB is there a User associated with this email
                 if (!sqliteHelper.isEmailExists(email)) {
+                    //if there is no same email and add new user
                     UserModel user = new UserModel(null, username, email, password);
                     sqliteHelper.addUser(user);
                     Toast.makeText(getApplicationContext(), "User created successfully! please login!", Toast.LENGTH_LONG).show();
                     finish();
                 } else {
+                    //if there is same email
                     Toast.makeText(getApplicationContext(), "User already exists with same email!", Toast.LENGTH_LONG).show();
                 }
             } else {
+                //If one or more validation get false return
                 Toast.makeText(getApplicationContext(), "Failed to register!", Toast.LENGTH_LONG).show();
             }
-
         });
     }
 
+    //Initiate variable with id on Register XML and set onClick to Login Activity by Destroy this session
     private void init() {
         Button loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(view -> finish());
@@ -66,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.register_button);
     }
 
+    //Validate Email
     private boolean validateEmail() {
         boolean isValid;
 
@@ -84,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
         return isValid;
     }
 
-
+    //Validate Username
     private boolean validateUsername() {
         boolean isValid;
 
@@ -106,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
         return isValid;
     }
 
+    //Validate Password
     private boolean validatePassword() {
         boolean isValid;
 
